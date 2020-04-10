@@ -1,3 +1,10 @@
+<?php  
+    session_start();
+    $usuario= $_SESSION['username'];
+    if(!isset($usuario)){
+        header("location:login.php");
+?>
+    <?php }else{?>
 <html>
     <head>
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -9,7 +16,7 @@
     <body>
         <a href="cerrarSesion.php" class="cerrarSesionBtn">
             <button type="button" class="btn btn-primary btn-lg" id="out_sesion">Cerrar Sesión</button></a><br>
-        <h4 class="titulo">Estudiante</h4><br><br>
+        <h4 class="titulo">Bienvenido estudiante <?php echo "$usuario"; ?></h4><br><br>
         <table class="table">
             <tr>
                 <th scope="col">Lunes</th>
@@ -27,3 +34,4 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </body>
 </html>
+<?php } ?>
