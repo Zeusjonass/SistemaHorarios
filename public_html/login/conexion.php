@@ -1,9 +1,9 @@
 <?php  
 $host="localhost";
-$usuario="root";
+$user="root";
 $clave="";
-$bd="sistemahorarios";
+$bd="sistemahorario";
 
-$conexion=mysqli_connect($host,$usuario,$clave,$bd);
+$conexion=mysqli_connect($host,$user,$clave,$bd);
 
 ?>
