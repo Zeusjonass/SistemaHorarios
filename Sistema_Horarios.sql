@@ -140,6 +140,7 @@ CREATE TABLE `materia` (
   `idMateria` int(11) NOT NULL AUTO_INCREMENT,
   `DescMat` varchar(20) NOT NULL,
   `Creditos` int(11) NOT NULL,
+  `NomMat` varchar(45) NOT NULL,
   PRIMARY KEY (`idMateria`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -150,7 +151,7 @@ CREATE TABLE `materia` (
 
 LOCK TABLES `materia` WRITE;
 /*!40000 ALTER TABLE `materia` DISABLE KEYS */;
-INSERT INTO `materia` VALUES (1,'IHC',6),(2,'SQA',6),(3,'Requisitos',7);
+INSERT INTO `materia` VALUES (1,'IHC',6,'Interaccion Humano Computadora'),(2,'SQA',6,'Aseguramiento de la Calidad de Software'),(3,'Requisitos',7,'Analisis de Requisitos de Software');
 /*!40000 ALTER TABLE `materia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,4 +240,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-10 16:56:01
+-- Dump completed on 2020-04-11 21:07:02
