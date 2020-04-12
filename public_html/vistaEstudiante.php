@@ -4,7 +4,26 @@
     if(!isset($usuario)){
         header("location:login.php");
 ?>
-    <?php }else{?>
+    <?php }else{
+        require 'login//conexion.php';
+            $sentencia_1="SELECT idAlumno FROM alumno where idUsuario='$usuario'";
+            $resultado2=mysqli_query($conexion,$sentencia_1);
+            $idObtenido=mysqli_fetch_array($resultado2);
+            $sentencia_2="SELECT nomAlum,DescMat,NomProf,Dia,HoraInicio,HoraFin,DescSalon 
+            FROM alumnoinscrito 
+                inner join curso 
+                inner join alumno 
+                inner join profesor 
+                inner join materia
+                inner join clase
+                inner join salon 
+                ON (curso.idCurso=alumnoinscrito.idCurso and alumno.idAlumno=alumnoinscrito.idAlumno and curso.idProfesor=profesor.idProfesor and curso.idMateria=materia.idMateria and curso.idCurso=clase.idCurso and clase.idSalon=salon.idSalon) where alumno.idAlumno='$idObtenido[0]'";
+            $resultado=mysqli_query($conexion,$sentencia_2);
+            $resultado2=mysqli_query($conexion,$sentencia_2);
+            $resultado3=mysqli_query($conexion,$sentencia_2);
+            $resultado4=mysqli_query($conexion,$sentencia_2);
+            $resultado5=mysqli_query($conexion,$sentencia_2);
+    ?>
 <html>
     <head>
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -17,21 +36,51 @@
         <a href="cerrarSesion.php" class="cerrarSesionBtn">
             <button type="button" class="btn btn-primary btn-lg" id="out_sesion">Cerrar Sesión</button></a><br>
         <h4 class="titulo">Bienvenido estudiante <?php echo "$usuario"; ?></h4><br><br>
+        
         <table class="table">
+            
             <tr>
                 <th scope="col">Lunes</th>
-                <th scope="col">Martes</th>
-                <th scope="col">Miércoles</th>
-                <th scope="col">Jueves</th>
-                <th scope="col">Viernes</th>
+                <?php while($mostrar=mysqli_fetch_array($resultado)){ 
+                    if($mostrar['Dia']=='Lunes'){
+                        echo "<td scope='col'>Materia: ".$mostrar['DescMat']."<br>Profesor: ".$mostrar['NomProf']."<br>Hora Inicio: ".$mostrar['HoraInicio']."<br>Hora final: ".$mostrar['HoraFin']."<br>Salon: ".$mostrar['DescSalon']."</td>";
+                    };
+                }?>
             </tr>
-            <tbody>
-
-            </tbody>
-        </table><br>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            <tr>
+                <th scope="col">Martes</th>
+                <?php while($mostrar2=mysqli_fetch_array($resultado2)){ 
+                    if($mostrar2['Dia']=='Martes'){
+                        echo "<td scope='col'>Materia: ".$mostrar2['DescMat']."<br>Profesor: ".$mostrar2['NomProf']."<br>Hora Inicio: ".$mostrar2['HoraInicio']."<br>Hora final: ".$mostrar2['HoraFin']."<br>Salon: ".$mostrar2['DescSalon']."</td>";
+                    };
+                }?>
+            </tr>
+            <tr>
+                <th scope="col">Miércoles</th>
+                <?php while($mostrar3=mysqli_fetch_array($resultado3)){ 
+                    if($mostrar3['Dia']=='Miercoles'){
+                        echo "<td scope='col'>Materia: ".$mostrar3['DescMat']."<br>Profesor: ".$mostrar3['NomProf']."<br>Hora Inicio: ".$mostrar3['HoraInicio']."<br>Hora final: ".$mostrar3['HoraFin']."<br>Salon: ".$mostrar3['DescSalon']."</td>";
+                    };
+                }?>
+            </tr>
+            <tr>
+                <th scope="col">Jueves</th>
+                <?php while($mostrar4=mysqli_fetch_array($resultado4)){ 
+                    if($mostrar4['Dia']=='Jueves'){
+                        echo "<td scope='col'>Materia: ".$mostrar4['DescMat']."<br>Profesor: ".$mostrar4['NomProf']."<br>Hora Inicio: ".$mostrar4['HoraInicio']."<br>Hora final: ".$mostrar4['HoraFin']."<br>Salon: ".$mostrar4['DescSalon']."</td>";
+                    };
+                }?>
+            </tr>
+            <tr>
+                <th scope="col">Viernes</th>
+                <?php while($mostrar5=mysqli_fetch_array($resultado5)){ 
+                    if($mostrar5['Dia']=='Viernes'){
+                        echo "<td scope='col'>Materia: ".$mostrar5['DescMat']."<br>Profesor: ".$mostrar5['NomProf']."<br>Hora Inicio: ".$mostrar5['HoraInicio']."<br>Hora final: ".$mostrar5['HoraFin']."<br>Salon: ".$mostrar5['DescSalon']."</td>";
+                    };
+                }?>
+            </tr>
+            
+        </table>
     </body>
 </html>
-<?php } ?>
+<?php }?>
