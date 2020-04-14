@@ -23,7 +23,7 @@ if($parametros['contar']>0){
 	}
 
 }else {
-    header("location: ../login.php");
+    header("location: ../login.php?error=1");
 }
 
 
