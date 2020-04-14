@@ -1,3 +1,4 @@
+
 <html> 
     <head>
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -14,7 +15,12 @@
                 <input type="text" placeholder="Ingrese el usuario" id="usuario" name="usuario" required="true"></p><br>
                 <p><strong>Password: </strong> 
                 <input type="password" placeholder="Ingrese la contraseña" id="password" name="password" required="true"></p><br>
-                <input type="submit" class="btn btn-primary btn-lg" value="Entrar"><br>
+            <?php  
+            if(isset($_GET['error'])==true){
+                echo "Existió un error en las credenciales<br><br>";
+            }
+            ?>
+                <input type="submit" class="btn btn-dark btn-lg" value="Entrar"><br>
             </form>
         </div>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
