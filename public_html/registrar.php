@@ -5,7 +5,8 @@
         header("location:login.php");
     else:
         require 'login//conexion.php';
-        $numCursos=0;
+        $clasesAsigDia=0;
+        $segundos2Horas=7200;
         $curso=$_POST['cursos'];
         $horaInicio=$_POST['horaInicio'];
         $horaFin=$_POST['horaFin'];
@@ -21,17 +22,21 @@
 
         if($strHoraFin<=$strHoraInicio):
             header("location:registrarHorario.php?error=2");
-        elseif($strHoraFin-$strHoraInicio>7200):
+        elseif($strHoraFin-$strHoraInicio>$segundos2Horas):
             header("location:registrarHorario.php?error=1");
         else:
             while($mostrar=mysqli_fetch_array($resultadoClases)){
                 if($mostrar['Dia']==$dia and $mostrar['idCurso']==$curso):
-                    echo "No se puede tener 2 clases diferentes del mismo grupo en un solo día";
-                else:
-
+                    $clasesAsigDia+=1;
                 endif;
             }
+            if($clasesAsigDia==0):
+
+            else:
+                header("location:registrarHorario.php?error=3");
+            endif;
         endif;
+        echo $clasesAsigDia;
     endif;
 
     ?>

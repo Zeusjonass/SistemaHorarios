@@ -27,6 +27,8 @@
                     alert("Las clases deben durar 2 horas o menos");
                 }else if(num==2){
                     alert("La hora final debe ir despues de la hora de inicio");
+                }else if(num==3){
+                    alert("No pueden haber 2 clases del mismo grupo el mismo día");
                 }
             }
         </script>
@@ -90,23 +92,12 @@
             <div class="col-12 text-center">
                 <?php
                 if (isset($_GET['error'])) {
-                    
-                    if($_GET['error']=="1"){
+                    $num=$_GET['error'];
                 ?>
                 <script type="text/javascript">
-                    errorMessage(1);
+                    errorMessage(<?php echo $num; ?>);
                 </script>
-                <?php
-                    } 
-                    elseif ($_GET['error']=="2"){
-                ?>
-                <script type="text/javascript">
-                    errorMessage(2);
-                </script>
-                <?php  
-                    }
-                }
-                ?>
+                <?php } ?>
             </div>
         </div>
         </div>
