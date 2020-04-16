@@ -37,11 +37,26 @@
                     </thead>
                     <tbody>
                         <?php 
-                        foreach ($mysqli->query('SELECT profesor.NomProf, salon.DescSalon, materia.NomMat from ((((clase JOIN salon ON clase.idSalon = salon.idSalon) JOIN curso ON clase.idCurso = curso.idCurso) JOIN profesor on curso.idProfesor = profesor.idProfesor) JOIN materia ON curso.idMateria = materia.idMateria)') as $row){?> 
+                        $tabla = "SELECT * from ((curso LEFT JOIN materia ON curso.idMateria = materia.idMateria) JOIN profesor ON curso.idProfesor = profesor.idProfesor) ORDER BY curso.idCurso ASC";
+                        $clases = "SELECT * from ((clase LEFT JOIN salon ON clase.idSalon = salon.idSalon)) ORDER BY clase.idCurso ASC";
+                        $res_tablas = $mysqli->query($tabla);
+                        $res_clases = $mysqli->query($clases);
+                        
+                        foreach ($res_tablas as $row){?> 
                             <tr>
                                 <td><?php echo $row['NomProf'] ?></td>
                                 <td><?php echo $row['NomMat'] ?></td>
-                                <td><?php echo $row['DescSalon'] ?></td>
+                                <td>
+                                <?php 
+                                foreach ($res_clases as $row2){
+                                    ?><?php
+                                    if($row2['idCurso'] == $row['idCurso']){
+                                        echo "-".$row2['DescSalon'];
+                                        
+                                    }
+                                }
+                                ?>
+                                </td>
                             </tr>
                         <?php } ?>
                     </tbody>
