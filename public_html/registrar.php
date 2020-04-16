@@ -6,23 +6,19 @@
     else:
         require 'login//conexion.php';
         function horarioDisponible($horaInicioOld,$horaFinOld,$horaInicioNew,$horaFinNew){
-            $horaMayor=false;
-            $horaMenor=false;
-            if(strtoTime($horaInicioNew)>=strtoTime($horaFinOld)):
-                $horaMayor=true;
+            $disponible=false;
+            if(strtotime($horaInicioNew)>=strtotime($horaFinOld)):
+                $disponible=true;
             endif;
 
-            if(strtoTime($horaFinNew)<=strtoTime($horaInicioOld)):
-                $horaMenor=true;
+            if(strtotime($horaFinNew)<=strtotime($horaInicioOld)):
+                $disponible=true;
             endif;
 
-            if($horaMayor or $horaMenor):
-                return true;
-            else:
-                return false;
-            endif;
+            return $disponible;
         }
         $clasesAsigDia=0;
+        $aux=0;
         $segundos2Horas=7200;
         $curso=$_POST['cursos'];
         $horaInicio=$_POST['horaInicio'];
@@ -43,18 +39,20 @@
             header("location:registrarHorario.php?error=1");
         else:
             while($mostrar=mysqli_fetch_array($resultadoClases)){
-                if($mostrar['Dia']==$dia and $mostrar['idCurso']==$curso):
+                if($mostrar['Dia']==$dia && $mostrar['idCurso']==$curso):
                     $clasesAsigDia+=1;
                 endif;
             }
             if($clasesAsigDia==0):
                 while ($mostrar2=mysqli_fetch_array($resultadoClases2)) {
-                    if($mostrar2['Dia']==$dia and $mostrar2['salon']==$salon and !horarioDisponible($horaInicio,$horaFin,$mostrar2['HoraInicio'],$mostrar2['HoraFin'])):
-                        $clasesAsigDia+=1;
-                    endif;   
+                    if($mostrar2['Dia']==$dia && $mostrar2['idSalon']==$salon 
+                        && (!horarioDisponible($mostrar2['HoraInicio'],$mostrar2['HoraFin'],$horaInicio,$horaFin))):
+                        $aux+=1;
+                    endif;
                 }
-                if($clasesAsigDia==0):
-                    $insertQuery="INSERT INTO clase (idCurso,idSalon,Dia,HoraInicio,HoraFin) values (".(int)$curso.",".(int)$salon.",".$dia.",".$horaInicio.",".$horaFin.")";
+
+                if($aux==0):
+                    $insertQuery="INSERT INTO clase (idCurso,idSalon,Dia,HoraInicio,HoraFin) values ('$curso','$salon','$dia','$horaInicio','$horaFin')";
                     mysqli_query($conexion,$insertQuery);
                     header("location:registrarHorario.php?error=5");
                 else:
