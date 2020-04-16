@@ -29,6 +29,10 @@
                     alert("La hora final debe ir despues de la hora de inicio");
                 }else if(num==3){
                     alert("No pueden haber 2 clases del mismo grupo el mismo día");
+                }else if(num==4){
+                    alert("Otro grupo tiene el horario deseado");
+                }else if(num==5){
+                    alert("Se agregó el horario de manera correcta");
                 }
             }
         </script>

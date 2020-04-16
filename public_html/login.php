@@ -7,7 +7,7 @@
         <title>Sistema de horarios</title>
         <script>
             function errorMessage(){
-                alert("Verifique su nombre de usuario y contraseña");
+                alert("El nombre y contraseña no coinciden");
             }
         </script>
     </head>
