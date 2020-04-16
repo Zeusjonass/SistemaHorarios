@@ -39,7 +39,8 @@
                         <?php 
                         $tabla = "SELECT * from ((curso LEFT JOIN materia ON curso.idMateria = materia.idMateria) JOIN profesor ON curso.idProfesor = profesor.idProfesor) ORDER BY curso.idCurso ASC";
                         //$clases = "SELECT * from ((clase LEFT JOIN salon ON clase.idSalon = salon.idSalon)) ORDER BY clase.idCurso ASC";
-                        $clases = "SELECT DISTINCT clase.idCurso, clase.idSalon, salon.descSalon from (clase JOIN salon ON clase.idSalon = salon.idSalon) ORDER BY clase.idCurso ASC";
+                        // Test
+			$clases = "SELECT DISTINCT clase.idCurso, clase.idSalon, salon.descSalon from (clase JOIN salon ON clase.idSalon = salon.idSalon) ORDER BY clase.idCurso ASC";
                         $res_tablas = $mysqli->query($tabla);
                         $res_clases = $mysqli->query($clases);
                         
