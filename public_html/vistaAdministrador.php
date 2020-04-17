@@ -46,15 +46,19 @@
                                 <td><?php echo $row['NomProf'] ?></td>
                                 <td><?php echo $row['NomMat'] ?></td>
                                 <td>
-                                    <?php 
-                                    foreach ($res_clases as $row2){
-                                        ?><?php
+                                    <?php
+                                    $contador=0;
+                                    foreach ($res_clases as $row2){   
                                         if($row2['idCurso'] == $row['idCurso']){
-                                            echo "-".$row2['descSalon'];
-                                            
+                                            if($contador==0){
+                                              echo $row2['descSalon'];  
+                                            }else{
+                                                echo "/".$contador;#$row2['descSalon'];
+                                            }
                                         }
+                                        $contador+=1;
                                     }
-                                ?>
+                                    ?>
                                 </td>
                             </tr>
                         <?php } ?>

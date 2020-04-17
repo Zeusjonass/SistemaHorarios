@@ -5,6 +5,7 @@
         header("location:login.php");
     else:
         require 'login//conexion.php';
+        #función encargada de determinar si el horario deseado está disponible con respecto a otro horario
         function horarioDisponible($horaInicioOld,$horaFinOld,$horaInicioNew,$horaFinNew){
             $disponible=false;
             if(strtotime($horaInicioNew)>=strtotime($horaFinOld)):
@@ -17,6 +18,7 @@
 
             return $disponible;
         }
+
         $clasesAsigDia=0;
         $aux=0;
         $segundos2Horas=7200;
@@ -33,11 +35,14 @@
         on (curso.idCurso=clase.idCurso and clase.idSalon=salon.idSalon)";
         $resultadoClases=mysqli_query($conexion,$sentenciaClases);
         $resultadoClases2=mysqli_query($conexion,$sentenciaClases);
+        #validacion de que la hora final vaya despues de la hora inicio
         if($strHoraFin<=$strHoraInicio):
             header("location:registrarHorario.php?error=2");
+        #validacion de que la diferencia de horas, no supere las 2 horas
         elseif($strHoraFin-$strHoraInicio>$segundos2Horas):
             header("location:registrarHorario.php?error=1");
         else:
+            #
             while($mostrar=mysqli_fetch_array($resultadoClases)){
                 if($mostrar['Dia']==$dia && $mostrar['idCurso']==$curso):
                     $clasesAsigDia+=1;
