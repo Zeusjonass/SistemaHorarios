@@ -13,7 +13,7 @@
     </head>
     <body>
         <div class="modal-dialog text-center">
-            <div class="col-sm-8 main-section">
+            <div class="col-sm-12 main-section">
                 <div class="modal-content">
                     <div class="col-12 user-img">
                         <img src="img/uady.png">
