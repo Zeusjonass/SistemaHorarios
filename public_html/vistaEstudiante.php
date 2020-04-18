@@ -1,11 +1,13 @@
 <?php  
     session_start();
     $usuario= $_SESSION['username'];
+    $rol=$_SESSION['rol'];
     if(!isset($usuario)){
         header("location:login.php");
 ?>
     <?php }else{
         require 'login//conexion.php';
+        if($rol==3){
             $sentencia_1="SELECT idAlumno FROM alumno where idUsuario='$usuario'";
             $resultado2=mysqli_query($conexion,$sentencia_1);
             $idObtenido=mysqli_fetch_array($resultado2);
@@ -31,9 +33,10 @@
     <head>
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
         <script src="js/script.js"></script>
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <title>Estudiante</title>
+        <link rel="icon" href="img/uady.png" />
     </head>   
     <body>
         <div class="container-fluid">
@@ -94,4 +97,6 @@
         </div>
     </body>
 </html>
-<?php }?>
+    <?php }else{
+        header("location:cerrarSesion.php");
+    } }?>
