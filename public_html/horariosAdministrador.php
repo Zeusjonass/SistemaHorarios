@@ -1,16 +1,16 @@
+<?php  ?>
 <?php  
     session_start();
-    $usuario= $_SESSION['username'];
-    $rol=$_SESSION['rol'];
-    if(!isset($usuario)){
+    $cursoObtenido= $_GET['id'];
+    if(!isset($cursoObtenido)){
         header("location:login.php");
     }else{
-
-        if($rol==2){
         require 'login//conexion.php';
-        $sentencia_1="SELECT idProfesor FROM profesor where idUsuario='$usuario'";
-        $resultado2=mysqli_query($conexion,$sentencia_1);
-        $idObtenido=mysqli_fetch_array($resultado2);
+        $cursoSql="SELECT * FROM curso where idCurso='$cursoObtenido'";
+        $cursoResult=mysqli_query($conexion,$cursoSql);
+        $idObtenido=mysqli_fetch_array($cursoResult);
+        $idCurso=$idObtenido['idCurso'];
+
         $sentencia_2="SELECT NomProf,Dia,HoraInicio,HoraFin,DescSalon,DescMat 
         from curso 
         inner join profesor 
@@ -21,7 +21,7 @@
         and curso.idProfesor=profesor.idProfesor 
         and curso.idMateria=materia.idMateria 
         and clase.idSalon=salon.idSalon) 
-        where profesor.idProfesor=$idObtenido[0]";
+        where curso.idCurso=$cursoObtenido";
         $resultado=mysqli_query($conexion,$sentencia_2);
         $resultado2=mysqli_query($conexion,$sentencia_2);
         $resultado3=mysqli_query($conexion,$sentencia_2);
@@ -29,7 +29,6 @@
         $resultado5=mysqli_query($conexion,$sentencia_2);
         $resultado6=mysqli_query($conexion,$sentencia_2);
         $nomAux=mysqli_fetch_array($resultado6);
-        $nomProf=$nomAux['NomProf']
     ?>
 <html>
     <head>
@@ -42,15 +41,13 @@
     </head>   
     <body>
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <br>
-                    <h4 class="titulo d-inline ">Bienvenido profesor <?php echo "$nomProf"; ?></h4>
-                    <a href="cerrarSesion.php" class="cerrarSesionBtn">
-                    <button type="button" class="btn btn-dark btn-sm mr-3" id="out_sesion">Cerrar Sesión</button></a>
-                    <br><br><br>
-                </div>
-            </div>
+        	<div class="row">
+        		<div class="col-12 text-center">
+        			<h3>Información del grupo <?php echo $cursoObtenido; ?></h3>
+        			<p>Profesor: <?php echo $nomAux['NomProf']; ?></p>
+        			<p>Materia: <?php echo $nomAux['DescMat']; ?></p>
+        		</div>
+        	</div>
             <div class="row">
                 <div class="col-12 table-responsive">
                     <table class="table table-dark table-hover table-borderless">
@@ -97,11 +94,17 @@
                     </table>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <br>
+                    <a href="vistaAdministrador.php">
+                    <button type="button" class="btn btn-dark btn-md mr-3" id="out_sesion">Regresar</button></a>
+                    <br><br><br>
+                </div>
+            </div>
         </div>
     </body>
 </html>
-    <?php }else{
-        header("location:cerrarSesion.php");
-    } }?>
+    <?php } ?>
 
         

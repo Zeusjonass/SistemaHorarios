@@ -3,8 +3,7 @@
     $usuario= $_SESSION['username'];
     if(!isset($usuario)){
         header("location:login.php");
-?>
-    <?php }else{
+    }else{
         require 'login//conexion.php';
             $sentencia="SELECT curso.idCurso,NomMat,NomProf 
             FROM curso 
@@ -18,9 +17,10 @@
 <html> 
     <head>
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <title>Registrar horario</title>
+        <link rel="icon" href="img/uady.png" />
         <script>
             function errorMessage(num){
                 if(num==1){

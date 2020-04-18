@@ -14,6 +14,7 @@ if($parametros['contar']>0){
 	$bdconect2 = mysqli_query($conexion,$resultado);
 	$parametro = mysqli_fetch_array($bdconect2);
 	$tipoUsuario=$parametro[0];
+	$_SESSION['rol']=$tipoUsuario;
 	if($tipoUsuario==1){
 		header("location: ../vistaAdministrador.php");
 	}elseif ($tipoUsuario==2) {
