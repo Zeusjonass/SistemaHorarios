@@ -42,7 +42,7 @@
         elseif($strHoraFin-$strHoraInicio>$segundos2Horas):
             header("location:registrarHorario.php?error=1");
         else:
-            #
+            
             while($mostrar=mysqli_fetch_array($resultadoClases)){
                 if($mostrar['Dia']==$dia && $mostrar['idCurso']==$curso):
                     $clasesAsigDia+=1;

@@ -42,16 +42,17 @@
     </head>   
     <body>
         <div class="container-fluid">
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-12 text-center">
                     <br>
-                    <h4 class="titulo d-inline ">Bienvenido profesor <?php echo "$nomProf"; ?></h4>
-                    <a href="cerrarSesion.php" class="cerrarSesionBtn">
-                    <button type="button" class="btn btn-dark btn-sm mr-3" id="out_sesion">Cerrar Sesión</button></a>
+                    <h4 class="d-inline ">Bienvenido profesor <?php echo "$nomProf"; ?></h4>
+                    <a href="cerrarSesion.php">
+                    <button type="button" class="btn btn-dark btn-sm mb-2 float-right">Cerrar Sesión</button>
+                    </a>
                     <br><br><br>
                 </div>
             </div>
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-12 table-responsive">
                     <table class="table table-dark table-hover table-borderless">
                         <tr>

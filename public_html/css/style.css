@@ -1,17 +1,6 @@
 body {
   background-color: powderblue;
-}
-.loginBox {
-    text-align: center;
-    position: relative;
-    top: 20%;
+  margin:0;
+  padding: 0;
 }
 
-.cerrarSesionBtn{
-    position: absolute;
-    right: 0;
-}
-
-.titulo{
-    text-align: center;
-}

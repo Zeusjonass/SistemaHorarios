@@ -23,12 +23,12 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <br>
-                    <h4 class="titulo d-inline">Bienvenido administrador</h4>
-                    <a href="cerrarSesion.php" class="cerrarSesionBtn">
-                    <button type="button" class="btn btn-primary btn-sm mr-3" id="out_sesion">Cerrar Sesión</button></a><br><br><br>
+                    <h4 class="d-inline">Bienvenido administrador</h4>
+                    <a href="cerrarSesion.php">
+                    <button type="button" class="btn btn-primary btn-sm mb-2 float-right" id="out_sesion">Cerrar Sesión</button></a><br><br><br>
                 </div>
             </div>
-            <div class = "row">
+            <div class="row">
                 <table class = "table table-sortable">
                     <thead>
                         <tr>
@@ -76,6 +76,6 @@
     </body>
 </html>
     <?php }else{
-    header("location:cerrasSesion.php");   
+    header("location:cerrarSesion.php");   
     }}
 ?>
