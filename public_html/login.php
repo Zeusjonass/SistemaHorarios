@@ -18,6 +18,7 @@
                 -moz-background-size: cover;
                 background-size: cover;
                 -o-background-size: cover;
+                background: linear-gradient(180deg, rgba(27, 27, 27, 0) 0%,  100%);
             }
             .formulario{
                 background-color: rgba(26,53,90,.7);
@@ -29,6 +30,7 @@
                 height: auto;
                 margin-top: -50px;
                 margin-bottom: 35px;
+                transition: transform .2s;
             }
             .user-img a img:hover{
                 cursor: pointer;
