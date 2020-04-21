@@ -22,6 +22,7 @@
             .formulario{
                 background-color: rgba(26,53,90,.7);
                 border-radius: 15px;
+                box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.61);
             }
             .user-img a img{
                 width: 50%;
@@ -32,6 +33,10 @@
             .user-img a img:hover{
                 cursor: pointer;
                 transform: scale(1.2);
+            }
+            
+            input{
+               text-align:center;
             }
         </style>
     </head>
@@ -50,7 +55,7 @@
                             <input class="form-control-md" type="text" placeholder="Usuario" id="usuario" name="usuario" required>
                         </div>
                         <div class="form-group" id="contrasena-group">
-                            <input class="form-control-md" type="password" placeholder="Ingrese la contraseña" id="password" name="password" required>
+                            <input class="form-control-md" type="password" placeholder="Contraseña" id="password" name="password" required>
                         </div>
                         <input type="submit" class="btn btn-light btn-sm " value="Entrar"><br><br>
                     </form>
