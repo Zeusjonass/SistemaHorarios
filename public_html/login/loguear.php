@@ -5,7 +5,7 @@ $usuario = $_POST['usuario'];
 $contraseña = $_POST['password'];
 
 
-$query = "SELECT COUNT(*) as contar FROM usuarios where idUsuario = '$usuario' and Password = '$contraseña' ";
+$query = "SELECT COUNT(*) as contar FROM usuarios where idUsuario = BINARY '$usuario' and Password = BINARY '$contraseña' ";
 $bdconect = mysqli_query($conexion,$query);
 $parametros = mysqli_fetch_array($bdconect);
 if($parametros['contar']>0){

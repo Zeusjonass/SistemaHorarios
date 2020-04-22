@@ -49,7 +49,6 @@
                 <div class="formulario">
                     <div class="user-img">
                         <a href="login.php"><img src="img/uady.png"></a>
-                        
                     </div>
                     <form action="login/loguear.php" method="POST">
 

@@ -1,4 +1,3 @@
-<?php  ?>
 <?php  
     session_start();
     $cursoObtenido= $_GET['id'];
@@ -35,11 +34,21 @@
 <html>
     <head>
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-        <script src="js/script.js"></script>
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <title>horarios</title>
-        <link rel="icon" href="img/uady.png" />
+        <link rel="icon" href="img/uady.png"/>
+        <script>
+            function validarOpcion(opcion){
+                form=document.getElementById("form");
+                if(opcion=='borrar'){
+                    form.action='borrarClase.php';
+                }
+                else{
+                    form.action='editarClase.php';
+                }
+            }
+        </script>
     </head>   
     <body>
         <div class="container-fluid ">
@@ -60,7 +69,7 @@
         	</div>
             <div class="row justify-content-center">
                 <div class="col-12 text-center table-responsive">
-                    <form action="modificarHorario.php" method="POST">
+                    <form action="" method="POST" id="form">
                     <table class="table table-dark table-hover table-borderless">
                         <tr>
                             <th scope="col">Lunes</th>
@@ -129,8 +138,8 @@
                             }?>
                         </tr>
                     </table>
-                    <button type="submit" class="btn btn-danger btn-md" value="borrar" name="opcion" >Borrar</button>
-                    <button type="submit" class="btn btn-success btn-md" value="editar" name="opcion" >Editar</button>
+                    <button type="input" class="btn btn-danger btn-md" onclick="validarOpcion('borrar')">Borrar</button>
+                    <button type="input" class="btn btn-success btn-md" onclick="validarOpcion('editar')">Editar</button><br><br>
                     </form >
                 </div>
             </div>
