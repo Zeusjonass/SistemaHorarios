@@ -7,12 +7,11 @@ if(!isset($usuario)):
 else:
 	if($rol==1):
 		require 'login//conexion.php';
-		$accionElegida=$_POST['opcion'];
-		$claseElegida=$_POST['claseElegida'];
-		$clasesQuery="SELECT * FROM clase where idClase='$claseElegida'";
-		$queryResult=mysqli_query($conexion,$clasesQuery);
-		$datosObtenidos=mysqli_fetch_array($queryResult);
-		if($accionElegida=="borrar"):
+		if(isset($_POST['claseElegida'])):
+			$claseElegida=$_POST['claseElegida'];
+			$clasesQuery="SELECT * FROM clase where idClase='$claseElegida'";
+			$queryResult=mysqli_query($conexion,$clasesQuery);
+			$datosObtenidos=mysqli_fetch_array($queryResult);
 			$borrarQuery="DELETE FROM clase where idClase='$claseElegida'";
 			$borrarResult=mysqli_query($conexion,$borrarQuery);
 			if($borrarResult):
@@ -21,7 +20,7 @@ else:
 				echo "Existio un error";
 			endif;
 		else:
-
+			echo "No se eligio ninguna clase";
 		endif;
 	else:
 		header("location:cerrarSesion.php");
