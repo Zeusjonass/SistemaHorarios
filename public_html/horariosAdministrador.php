@@ -63,8 +63,9 @@
         	</div>
         	<div class="row justify-content-center">
         		<div class="col-6 text-center">
-        			<p>Profesor: <?php echo $nomAux['NomProf']; ?></p>
-        			<p>Materia: <?php echo $nomAux['DescMat']; ?></p>
+
+        			<p>Profesor: <?php if (isset($nomAux)){ echo $nomAux['NomProf'];}?></p>
+        			<p>Materia: <?php if (isset($nomAux)){ echo $nomAux['DescMat'];}?></p>
         		</div>
         	</div>
             <div class="row justify-content-center">
