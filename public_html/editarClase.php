@@ -14,9 +14,6 @@ else:
 			$clasesQuery="SELECT * FROM clase where idClase='$claseElegida'";
 			$queryResult=mysqli_query($conexion,$clasesQuery);
 			$datosObtenidos=mysqli_fetch_array($queryResult);
-		else:
-			echo "No se eligio ninguna clase";
-		endif;
 		?>
 		<html>
 		<head>
@@ -25,25 +22,46 @@ else:
 	        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	        <link rel="icon" href="img/uady.png"/>
 	        <title>Editar clase</title>
+	        <style type="text/css">
+	        	body{
+	                background: url('img/UADY.jpg') no-repeat center center fixed;
+	                -webkit-background-size: cover;
+	                -moz-background-size: cover;
+	                background-size: cover;
+	                -o-background-size: cover;
+	                backdrop-filter: blur(4px);
+            	}
+            	.formulario{
+	                background-color: rgba(26,53,90,.7);
+	                border-radius: 15px;
+	                box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.61);
+            	}
+            	.formulario label p {
+            		color: white;
+            	}
+            	.formulario h2{
+            		color: white;
+            	}
+            </style>
 		</head>
 		<body>
 	        <div class="container-fluid min-vh-100">
 		        <div class="row justify-content-center">
 		        	<div class="col-12 text-center">
-		        		<a href="horariosAdministrador.php"><input type="button" class="btn btn-dark btn-sm float-left" value="Regresar"></a>
-		        		
-		        		<h3 class="d-inline">Editar un horario</h3>
+		        		<a href="<?php echo "horariosAdministrador.php?id=".$datosObtenidos['idCurso'] ?>"><input type="button" class="btn btn-dark btn-sm float-left" value="Regresar"></a>
 		        	</div>
 		        </div>       
 	            <div class="form-row h-100 justify-content-center ">
 	                <div class="col-4 text-center my-auto">
 		                <div class="formulario">
+		                	<br>
+		                	<h2>Editar horario</h2><br>
 		                    <form action="" method="POST">
-								<label>Hora inicio: 
+								<label><p>Hora inicio:</p>
 									<input type="time" name="horaInicio" min="07:00"  max="21:00" required="true" step="1800" value="<?php echo $datosObtenidos['HoraInicio']?>">
 								</label><br>
-                				<label>Hora Fin: <input type="time" name="horaFin" required="true" min="07:00"  max="21:00" step="1800" value="<?php echo $datosObtenidos['HoraFin']?>"></label><br>
-                				<label>Día: 
+                				<label><p>Hora Fin: </p><input type="time" name="horaFin" required="true" min="07:00"  max="21:00" step="1800" value="<?php echo $datosObtenidos['HoraFin']?>"></label><br>
+                				<label><p>Día: </p>
 				                    <select name="dia" required="true" value="<?php echo $datosObtenidos['Dia']?>">
 				                        <option value="Lunes">Lunes</option>
 				                        <option value="Martes">Martes</option>
@@ -52,7 +70,7 @@ else:
 				                        <option value="Viernes">Viernes</option>
 				                    </select>
 			               	 	</label><br>
-				                <label>Salón: 
+				                <label><p>Salón: </p>
 				                    <select name="salon" required="true" value="<?php echo $datosObtenidos['idSalon']?>">
 				                        <?php while($salones=mysqli_fetch_array($salonResult)){
 				                            echo "<option value=".$salones['idSalon'].">".$salones['DescSalon']."</option> ";
@@ -70,8 +88,11 @@ else:
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 		</body>
-		</html>
+		</html>		
 		<?php
+		else:
+			echo "No se eligio ninguna clase";
+		endif;
 	else:
 		header("location:cerrarSesion.php");
 	endif;

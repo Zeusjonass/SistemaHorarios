@@ -7,7 +7,11 @@
     }else{
         require 'login//conexion.php';
         if($rol==1){
-        $cursoSql="SELECT * FROM curso where idCurso='$cursoObtenido'";
+        $cursoSql="SELECT * FROM curso 
+        inner join profesor 
+        inner join materia 
+        on (curso.idProfesor=profesor.idProfesor and curso.idMateria=materia.idMateria) 
+        where idCurso='$cursoObtenido'";
         $cursoResult=mysqli_query($conexion,$cursoSql);
         $idObtenido=mysqli_fetch_array($cursoResult);
         $idCurso=$idObtenido['idCurso'];
@@ -28,8 +32,6 @@
         $resultado3=mysqli_query($conexion,$sentencia_2);
         $resultado4=mysqli_query($conexion,$sentencia_2);
         $resultado5=mysqli_query($conexion,$sentencia_2);
-        $resultado6=mysqli_query($conexion,$sentencia_2);
-        $nomAux=mysqli_fetch_array($resultado6);
     ?>
 <html>
     <head>
@@ -49,6 +51,27 @@
                 }
             }
         </script>
+        <style type="text/css">
+                body{
+                    background: url('img/UADY.jpg') no-repeat center center fixed;
+                    -webkit-background-size: cover;
+                    -moz-background-size: cover;
+                    background-size: cover;
+                    -o-background-size: cover;
+                    backdrop-filter: blur(10px);
+                }
+                .formulario{
+                    background-color: rgba(26,53,90,.7);
+                    border-radius: 15px;
+                    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.61);
+                }
+                .formulario label p {
+                    color: white;
+                }
+                .formulario h2{
+                    color: white;
+                }
+            </style>
     </head>   
     <body>
         <div class="container-fluid ">
@@ -63,9 +86,8 @@
         	</div>
         	<div class="row justify-content-center">
         		<div class="col-6 text-center">
-
-        			<p>Profesor: <?php if (isset($nomAux)){ echo $nomAux['NomProf'];}?></p>
-        			<p>Materia: <?php if (isset($nomAux)){ echo $nomAux['DescMat'];}?></p>
+        			<p>Profesor: <?php if (isset($idObtenido)){ echo $idObtenido['NomProf'];}?></p>
+        			<p>Materia: <?php if (isset($idObtenido)){ echo $idObtenido['DescMat'];}?></p>
         		</div>
         	</div>
             <div class="row justify-content-center">
