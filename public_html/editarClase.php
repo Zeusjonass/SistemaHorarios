@@ -7,6 +7,7 @@ if(!isset($usuario)):
 else:
 	if($rol==1):
 		require 'login//conexion.php';
+		require 'classes/clase.php';
 		$salonesQuery="SELECT * FROM salon";
 		$salonResult=mysqli_query($conexion,$salonesQuery);
 		if(isset($_POST['claseElegida'])):
@@ -14,6 +15,7 @@ else:
 			$clasesQuery="SELECT * FROM clase where idClase='$claseElegida'";
 			$queryResult=mysqli_query($conexion,$clasesQuery);
 			$datosObtenidos=mysqli_fetch_array($queryResult);
+			$claseAEditar=new Clase($datosObtenidos['idCurso'],$datosObtenidos['idSalon'],$datosObtenidos['Dia'],$datosObtenidos['HoraInicio'],$datosObtenidos['HoraFin']);
 		?>
 		<html>
 		<head>
@@ -58,9 +60,9 @@ else:
 		                	<h2>Editar horario</h2><br>
 		                    <form action="" method="POST">
 								<label><p>Hora inicio:</p>
-									<input type="time" name="horaInicio" min="07:00"  max="21:00" required="true" step="1800" value="<?php echo $datosObtenidos['HoraInicio']?>">
+									<input type="time" name="horaInicio" min="07:00"  max="21:00" required="true" step="1800" value="<?php echo $claseAEditar->getHoraInicio() ?>">
 								</label><br>
-                				<label><p>Hora Fin: </p><input type="time" name="horaFin" required="true" min="07:00"  max="21:00" step="1800" value="<?php echo $datosObtenidos['HoraFin']?>"></label><br>
+                				<label><p>Hora Fin: </p><input type="time" name="horaFin" required="true" min="07:00"  max="21:00" step="1800" value="<?php echo $claseAEditar->getHoraFin() ?>"></label><br>
                 				<label><p>Día: </p>
 				                    <select name="dia" required="true" value="<?php echo $datosObtenidos['Dia']?>">
 				                        <option value="Lunes">Lunes</option>
