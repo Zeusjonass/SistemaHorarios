@@ -52,26 +52,27 @@
             }
         </script>
         <style type="text/css">
-                body{
-                    background: url('img/UADY.jpg') no-repeat center center fixed;
-                    -webkit-background-size: cover;
-                    -moz-background-size: cover;
-                    background-size: cover;
-                    -o-background-size: cover;
-                    backdrop-filter: blur(10px);
-                }
-                .formulario{
-                    background-color: rgba(26,53,90,.7);
-                    border-radius: 15px;
-                    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.61);
-                }
-                .formulario label p {
-                    color: white;
-                }
-                .formulario h2{
-                    color: white;
-                }
-            </style>
+            body{
+                background: url('img/UADY.jpg') no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                background-size: cover;
+                -o-background-size: cover;
+                backdrop-filter: blur(10px);
+            }
+            .formulario{
+                background-color: rgba(26,53,90,.7);
+                border-radius: 15px;
+                box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.61);
+            }
+            .formulario label p {
+                color: white;
+            }
+            .formulario h2{
+                color: white;
+            }
+        </style>
+        
     </head>   
     <body>
         <div class="container-fluid ">
