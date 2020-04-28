@@ -12,6 +12,7 @@ else:
 		$salonResult=mysqli_query($conexion,$salonesQuery);
 		if(isset($_POST['claseElegida'])):
 			$claseElegida=$_POST['claseElegida'];
+			$_SESSION['claseEditar']=$claseElegida;
 			$clasesQuery="SELECT * FROM clase where idClase='$claseElegida'";
 			$queryResult=mysqli_query($conexion,$clasesQuery);
 			$datosObtenidos=mysqli_fetch_array($queryResult);
@@ -58,7 +59,7 @@ else:
 		                <div class="formulario">
 		                	<br>
 		                	<h2>Editar horario</h2><br>
-		                    <form action="" method="POST">
+		                    <form action="editar.php" method="POST">
 								<label><p>Hora inicio:</p>
 									<input type="time" name="horaInicio" min="07:00"  max="21:00" required="true" step="1800" value="<?php echo $claseAEditar->getHoraInicio() ?>">
 								</label><br>

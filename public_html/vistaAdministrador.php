@@ -15,6 +15,21 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="css/adminTable.css">
         <link rel="icon" href="img/uady.png" />
+        <script>
+            function errorMessage(num){
+                if(num==1){
+                    alert("Las clases deben durar 2 horas o menos");
+                }else if(num==2){
+                    alert("La hora final debe ir despues de la hora de inicio");
+                }else if(num==3){
+                    alert("No pueden haber 2 clases del mismo grupo el mismo día");
+                }else if(num==4){
+                    alert("Otro grupo tiene el horario deseado");
+                }else if(num==5){
+                    alert("Se actualizó el horario de manera correcta");
+                }
+            }
+        </script>
     </head>   
 
     <body>
@@ -64,6 +79,18 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <a href="registrarHorario.php"><button type="submit" class="btn btn-primary btn-md text-center">Registrar Nuevo Horario</button></a>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-12 text-center">
+                    <?php
+                    if (isset($_GET['error'])) {
+                        $num=$_GET['error'];
+                    ?>
+                    <script type="text/javascript">
+                        errorMessage(<?php echo $num; ?>);
+                    </script>
+                    <?php } ?>
                 </div>
             </div>
         </div>
