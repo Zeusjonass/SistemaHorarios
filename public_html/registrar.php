@@ -29,10 +29,7 @@
             $clase=new Clase($_POST['cursos'],$_POST['salon'],$_POST['dia'],$_POST['horaInicio'],$_POST['horaFin']);
             $strHoraInicio=strtotime($clase->getHoraInicio());
             $strHoraFin=strtotime($clase->getHoraFin());
-            $sentenciaClases="SELECT curso.idCurso,salon.idSalon,clase.Dia,clase.HoraInicio,clase.HoraFin FROM curso
-            inner join clase
-            inner join salon
-            on (curso.idCurso=clase.idCurso and clase.idSalon=salon.idSalon)";
+            $sentenciaClases="SELECT * FROM clase";
 
             $resultadoClases=mysqli_query($conexion,$sentenciaClases);
             $resultadoClases2=mysqli_query($conexion,$sentenciaClases);

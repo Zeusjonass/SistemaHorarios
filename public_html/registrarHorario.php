@@ -1,10 +1,12 @@
  <?php  
     session_start();
     $usuario= $_SESSION['username'];
+    $rol=$_SESSION['rol'];
     if(!isset($usuario)){
         header("location:login.php");
     }else{
         require 'login//conexion.php';
+        if ($rol==1) {
             $sentencia="SELECT curso.idCurso,NomMat,NomProf 
             FROM curso 
                 inner join profesor 
@@ -107,4 +109,8 @@
         </div>
     </body> 
 </html>
-<?php }?>
+<?php 
+    }else{ 
+        header("location:cerrarSesion.php"); 
+    }
+}?>
