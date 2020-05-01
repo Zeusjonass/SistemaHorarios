@@ -26,8 +26,12 @@ else:
 	        <link rel="icon" href="img/uady.png"/>
 	        <title>Editar clase</title>
 	        <style type="text/css">
+	        	*{
+	        		margin: 0;
+	        		padding: 0;
+	        	}
 	        	body{
-	                background: url('img/UADY.jpg') no-repeat center center fixed;
+	                background: url('img/schedule.jpg') no-repeat center center fixed;
 	                -webkit-background-size: cover;
 	                -moz-background-size: cover;
 	                background-size: cover;
@@ -35,7 +39,7 @@ else:
 	                backdrop-filter: blur(4px);
             	}
             	.formulario{
-	                background-color: rgba(26,53,90,.7);
+	                background-color: rgba(26,53,90,.8);
 	                border-radius: 15px;
 	                box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.61);
             	}
@@ -50,7 +54,7 @@ else:
 		<body>
 	        <div class="container-fluid min-vh-100">
 		        <div class="row justify-content-center">
-		        	<div class="col-12 text-center">
+		        	<div class="col-12 text-center mt-3">
 		        		<a href="<?php echo "horariosAdministrador.php?id=".$datosObtenidos['idCurso'] ?>"><input type="button" class="btn btn-dark btn-sm float-left" value="Regresar"></a>
 		        	</div>
 		        </div>       
@@ -65,18 +69,18 @@ else:
 								</label><br>
                 				<label><p>Hora Fin: </p><input type="time" name="horaFin" required="true" min="07:00"  max="21:00" step="1800" value="<?php echo $claseAEditar->getHoraFin() ?>"></label><br>
                 				<label><p>Día: </p>
-				                    <select name="dia" required="true" value="<?php echo $datosObtenidos['Dia']?>">
-				                        <option value="Lunes">Lunes</option>
-				                        <option value="Martes">Martes</option>
-				                        <option value="Miercoles">Miércoles</option>
-				                        <option value="Jueves">Jueves</option>
-				                        <option value="Viernes">Viernes</option>
+				                    <select name="dia" required="true">
+				                        <option value="Lunes" <?php if($claseAEditar->getDia()=="Lunes"){echo "selected";} ?> >Lunes</option>
+				                        <option value="Martes" <?php if($claseAEditar->getDia()=="Martes"){echo "selected";} ?> >Martes</option>
+				                        <option value="Miercoles" <?php if($claseAEditar->getDia()=="Miercoles"){echo "selected";} ?> >Miércoles</option>
+				                        <option value="Jueves" <?php if($claseAEditar->getDia()=="Jueves"){echo "selected";} ?> >Jueves</option>
+				                        <option value="Viernes" <?php if($claseAEditar->getDia()=="Viernes"){echo "selected";} ?> >Viernes</option>
 				                    </select>
 			               	 	</label><br>
 				                <label><p>Salón: </p>
-				                    <select name="salon" required="true" value="<?php echo $datosObtenidos['idSalon']?>">
+				                    <select name="salon" required="true">
 				                        <?php while($salones=mysqli_fetch_array($salonResult)){
-				                            echo "<option value=".$salones['idSalon'].">".$salones['DescSalon']."</option> ";
+				                            echo "<option ".(($claseAEditar->getIdSalon()==$salones['idSalon'])?'selected':"")." value=".$salones['idSalon'].">".$salones['DescSalon']."</option> ";
 				                        } 
 				                        ?>
 				                    </select>
