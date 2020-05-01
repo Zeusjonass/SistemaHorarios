@@ -60,16 +60,14 @@
                 -o-background-size: cover;
                 backdrop-filter: blur(10px);
             }
-            .formulario{
-                background-color: rgba(26,53,90,.7);
+            .table{
+                background-color: rgba(0,0,0,.8);
                 border-radius: 15px;
-                box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.61);
-            }
-            .formulario label p {
                 color: white;
             }
-            .formulario h2{
-                color: white;
+            .table tr:hover{
+                cursor: pointer;
+                background-color: rgba(0,0,0,.9);
             }
         </style>
         
