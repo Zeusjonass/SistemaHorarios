@@ -5,16 +5,15 @@
     if(!isset($usuario)){
         header("location:login.php");
     }else{
-        require 'login//conexion.php';
+        require 'Dao.php';
+
         if ($rol==1) {
-            $sentencia="SELECT curso.idCurso,NomMat,NomProf 
-            FROM curso 
-                inner join profesor 
-                inner join materia
-                ON (curso.idProfesor=profesor.idProfesor and curso.idMateria=materia.idMateria)";
-            $resultado=mysqli_query($conexion,$sentencia);
-            $sentencia2="SELECT * from salon";
-            $resultado2=mysqli_query($conexion,$sentencia2);
+
+            $dao = new Dao();
+
+            $dataGrupos = $dao->listarDatos('vistaRegistrarGrupos');
+
+            $dataSalones= $dao->listarDatos('vistaRegistrarSalones');
     ?>
 <html> 
     <head>
@@ -25,15 +24,20 @@
         <link rel="icon" href="img/uady.png" />
         <script>
             function errorMessage(num){
-                if(num==1){
+                if( num==1 ){
+                    
                     alert("Las clases deben durar 2 horas o menos");
-                }else if(num==2){
+                }else if( num==2 ){
+
                     alert("La hora final debe ir despues de la hora de inicio");
-                }else if(num==3){
+                }else if( num==3 ){
+
                     alert("No pueden haber 2 clases del mismo grupo el mismo día");
-                }else if(num==4){
+                }else if( num==4 ){
+
                     alert("Otro grupo tiene el horario deseado");
-                }else if(num==5){
+                }else if( num==5 ){
+
                     alert("Se agregó el horario de manera correcta");
                 }
             }
@@ -48,12 +52,12 @@
             </div>
             <div class="row">
                 <div class="col-12" style="text-align: center;">
-                <form action="registrar.php" method="POST">
+                <form action="controlador.php?action=registrar" method="POST">
                 <table class="table table-dark table-hover table-borderless">
                     <tr style="text-align: center;">
                         <th>Grupos Existentes</th>
                     </tr>
-                    <?php while($mostrar=mysqli_fetch_array($resultado)){ 
+                    <?php while($mostrar=mysqli_fetch_assoc($dataGrupos)){ 
                     
                     echo "<tr style='text-align: justify;border:1px solid black'>";
                     echo "<td scope='col' style='text-align:center;'>";
@@ -79,7 +83,7 @@
                 </label><br>
                 <label>Salón: 
                     <select name="salon" required="true">
-                        <?php while($salones=mysqli_fetch_array($resultado2)){
+                        <?php while($salones=mysqli_fetch_assoc($dataSalones)){
                             echo "<option value=".$salones['idSalon'].">".$salones['DescSalon']."</option> ";
                         } 
                         ?>

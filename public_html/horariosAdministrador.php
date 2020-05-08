@@ -2,36 +2,36 @@
     session_start();
     $cursoObtenido= $_GET['id'];
     $rol=$_SESSION['rol'];
-    if(!isset($cursoObtenido)){
-        header("location:login.php");
-    }else{
-        require 'login//conexion.php';
-        if($rol==1){
-        $cursoSql="SELECT * FROM curso 
-        inner join profesor 
-        inner join materia 
-        on (curso.idProfesor=profesor.idProfesor and curso.idMateria=materia.idMateria) 
-        where idCurso='$cursoObtenido'";
-        $cursoResult=mysqli_query($conexion,$cursoSql);
-        $idObtenido=mysqli_fetch_array($cursoResult);
-        $idCurso=$idObtenido['idCurso'];
 
-        $sentencia_2="SELECT idClase,NomProf,Dia,HoraInicio,HoraFin,DescSalon,DescMat 
-        from curso 
-        inner join profesor 
-        inner join clase 
-        inner join salon 
-        inner join materia 
-        on (curso.idCurso=clase.idCurso 
-        and curso.idProfesor=profesor.idProfesor 
-        and curso.idMateria=materia.idMateria 
-        and clase.idSalon=salon.idSalon) 
-        where curso.idCurso=$cursoObtenido";
-        $resultado=mysqli_query($conexion,$sentencia_2);
-        $resultado2=mysqli_query($conexion,$sentencia_2);
-        $resultado3=mysqli_query($conexion,$sentencia_2);
-        $resultado4=mysqli_query($conexion,$sentencia_2);
-        $resultado5=mysqli_query($conexion,$sentencia_2);
+    if(!isset($cursoObtenido)){
+
+        header("location:login.php");
+
+    }else{
+
+        require 'Dao.php';
+
+        if($rol==1){
+
+            $_SESSION['cursoObtenido'] = $cursoObtenido;
+
+            $dao = new Dao();
+
+            $dataCurso= $dao->listarDatos('horariosAdminCurso');
+
+            $idObtenido=mysqli_fetch_assoc($dataCurso);
+
+            $idCurso=$idObtenido['idCurso'];
+
+            $dataLunes = $dao->listarDatos('horariosAdmin');
+
+            $dataMartes = $dao->listarDatos('horariosAdmin');
+
+            $dataMiercoles = $dao->listarDatos('horariosAdmin');
+
+            $dataJueves = $dao->listarDatos('horariosAdmin');
+
+            $dataViernes = $dao->listarDatos('horariosAdmin');
     ?>
 <html>
     <head>
@@ -42,11 +42,15 @@
         <link rel="icon" href="img/uady.png"/>
         <script>
             function validarOpcion(opcion){
+
                 form=document.getElementById("form");
+
                 if(opcion=='borrar'){
-                    form.action='borrarClase.php';
+
+                    form.action='controlador.php?action=borrar';
                 }
                 else{
+
                     form.action='editarClase.php';
                 }
             }
@@ -85,8 +89,8 @@
         	</div>
         	<div class="row justify-content-center">
         		<div class="col-6 text-center">
-        			<p>Profesor: <?php if (isset($idObtenido)){ echo $idObtenido['NomProf'];}?></p>
-        			<p>Materia: <?php if (isset($idObtenido)){ echo $idObtenido['DescMat'];}?></p>
+        			<p>Profesor: <?php if ( isset( $idObtenido ) ){ echo $idObtenido['NomProf'];}?></p>
+        			<p>Materia: <?php if ( isset( $idObtenido ) ){ echo $idObtenido['DescMat'];}?></p>
         		</div>
         	</div>
             <div class="row justify-content-center">
@@ -95,8 +99,8 @@
                     <table class="table table-dark table-hover table-borderless">
                         <tr>
                             <th scope="col">Lunes</th>
-                            <?php while($mostrar=mysqli_fetch_array($resultado)){ 
-                                if($mostrar['Dia']=='Lunes'){
+                            <?php while( $mostrar = mysqli_fetch_assoc( $dataLunes ) ){ 
+                                if( $mostrar['Dia'] == 'Lunes' ){
                                     echo "<td scope='col'>";
                                     echo "<label>";
                                     echo "<input type='radio' value=".$mostrar['idClase']." name='claseElegida' required><br>";
@@ -109,8 +113,8 @@
                         </tr>
                         <tr>
                             <th scope="col">Martes</th>
-                            <?php while($mostrar2=mysqli_fetch_array($resultado2)){ 
-                                if($mostrar2['Dia']=='Martes'){
+                            <?php while( $mostrar2 = mysqli_fetch_assoc( $dataMartes ) ){ 
+                                if( $mostrar2['Dia'] == 'Martes' ){
                                 	echo "<td scope='col'>";
                                     echo "<label>";
                                     echo "<input type='radio' value=".$mostrar2['idClase']." name='claseElegida' required><br>";
@@ -122,8 +126,8 @@
                         </tr>
                         <tr>
                             <th scope="col">Miércoles</th>
-                            <?php while($mostrar3=mysqli_fetch_array($resultado3)){ 
-                                if($mostrar3['Dia']=='Miercoles'){
+                            <?php while( $mostrar3 = mysqli_fetch_assoc( $dataMiercoles ) ){ 
+                                if( $mostrar3['Dia'] == 'Miercoles' ){
                                 	echo "<td scope='col'>";
                                     echo "<label>";
                                     echo "<input type='radio' value=".$mostrar3['idClase']." name='claseElegida' required><br>";
@@ -135,8 +139,8 @@
                         </tr>
                         <tr>
                             <th scope="col">Jueves</th>
-                            <?php while($mostrar4=mysqli_fetch_array($resultado4)){ 
-                                if($mostrar4['Dia']=='Jueves'){
+                            <?php while( $mostrar4 = mysqli_fetch_assoc( $dataJueves ) ){ 
+                                if( $mostrar4['Dia'] == 'Jueves' ){
                             		echo "<td scope='col'>";
                                     echo "<label>";
                                     echo "<input type='radio' value=".$mostrar4['idClase']." name='claseElegida' required><br>";
@@ -148,8 +152,8 @@
                         </tr>
                         <tr>
                             <th scope="col">Viernes</th>
-                            <?php while($mostrar5=mysqli_fetch_array($resultado5)){ 
-                                if($mostrar5['Dia']=='Viernes'){
+                            <?php while( $mostrar5 = mysqli_fetch_assoc( $dataViernes ) ){ 
+                                if( $mostrar5['Dia'] == 'Viernes' ){
                                 	echo "<td scope='col'>";
                                     echo "<label>";
                                     echo "<input type='radio' value=".$mostrar5['idClase']." name='claseElegida' required><br>";

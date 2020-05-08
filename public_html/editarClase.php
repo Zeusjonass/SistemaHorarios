@@ -2,21 +2,34 @@
 session_start();
 $usuario=$_SESSION['username'];
 $rol=$_SESSION['rol'];
+
 if(!isset($usuario)):
+
 	header("location:login.php");
 else:
+
 	if($rol==1):
-		require 'login//conexion.php';
-		require 'classes/clase.php';
-		$salonesQuery="SELECT * FROM salon";
-		$salonResult=mysqli_query($conexion,$salonesQuery);
+
+		require 'Dao.php';
+
+		require'Modelos/clase.php';
+
 		if(isset($_POST['claseElegida'])):
-			$claseElegida=$_POST['claseElegida'];
-			$_SESSION['claseEditar']=$claseElegida;
-			$clasesQuery="SELECT * FROM clase where idClase='$claseElegida'";
-			$queryResult=mysqli_query($conexion,$clasesQuery);
-			$datosObtenidos=mysqli_fetch_array($queryResult);
-			$claseAEditar=new Clase($datosObtenidos['idCurso'],$datosObtenidos['idSalon'],$datosObtenidos['Dia'],$datosObtenidos['HoraInicio'],$datosObtenidos['HoraFin']);
+
+			$claseElegida = $_POST['claseElegida'];
+
+			$_SESSION['claseEditar'] = $claseElegida;
+
+			$dao = new Dao();
+
+			$dataSalon = $dao->listarDatos('editarClaseSalones');
+
+			$dataQuery = $dao->listarDatos('editarClaseClaseElegida');
+
+			$datosObtenidos = mysqli_fetch_assoc($dataQuery);
+
+			$claseAEditar = new Clase($datosObtenidos['idCurso'],$datosObtenidos['idSalon'],$datosObtenidos['Dia'],$datosObtenidos['HoraInicio'],$datosObtenidos['HoraFin']);
+
 		?>
 		<html>
 		<head>
@@ -63,24 +76,24 @@ else:
 		                <div class="formulario">
 		                	<br>
 		                	<h2>Editar horario</h2><br>
-		                    <form action="editar.php" method="POST">
+		                    <form action="controlador.php?action=editar" method="POST">
 								<label><p>Hora inicio:</p>
 									<input type="time" name="horaInicio" min="07:00"  max="21:00" required="true" step="1800" value="<?php echo $claseAEditar->getHoraInicio() ?>">
 								</label><br>
                 				<label><p>Hora Fin: </p><input type="time" name="horaFin" required="true" min="07:00"  max="21:00" step="1800" value="<?php echo $claseAEditar->getHoraFin() ?>"></label><br>
                 				<label><p>Día: </p>
 				                    <select name="dia" required="true">
-				                        <option value="Lunes" <?php if($claseAEditar->getDia()=="Lunes"){echo "selected";} ?> >Lunes</option>
-				                        <option value="Martes" <?php if($claseAEditar->getDia()=="Martes"){echo "selected";} ?> >Martes</option>
-				                        <option value="Miercoles" <?php if($claseAEditar->getDia()=="Miercoles"){echo "selected";} ?> >Miércoles</option>
-				                        <option value="Jueves" <?php if($claseAEditar->getDia()=="Jueves"){echo "selected";} ?> >Jueves</option>
-				                        <option value="Viernes" <?php if($claseAEditar->getDia()=="Viernes"){echo "selected";} ?> >Viernes</option>
+				                        <option value="Lunes" <?php if($claseAEditar->getDia() == "Lunes"){echo "selected";} ?> >Lunes</option>
+				                        <option value="Martes" <?php if($claseAEditar->getDia() == "Martes"){echo "selected";} ?> >Martes</option>
+				                        <option value="Miercoles" <?php if($claseAEditar->getDia() == "Miercoles"){echo "selected";} ?> >Miércoles</option>
+				                        <option value="Jueves" <?php if($claseAEditar->getDia() == "Jueves"){echo "selected";} ?> >Jueves</option>
+				                        <option value="Viernes" <?php if($claseAEditar->getDia() == "Viernes"){echo "selected";} ?> >Viernes</option>
 				                    </select>
 			               	 	</label><br>
 				                <label><p>Salón: </p>
 				                    <select name="salon" required="true">
-				                        <?php while($salones=mysqli_fetch_array($salonResult)){
-				                            echo "<option ".(($claseAEditar->getIdSalon()==$salones['idSalon'])?'selected':"")." value=".$salones['idSalon'].">".$salones['DescSalon']."</option> ";
+				                        <?php while( $salones = mysqli_fetch_assoc($dataSalon) ){
+				                            echo "<option ".(($claseAEditar->getIdSalon() == $salones['idSalon'])?'selected':"")." value=".$salones['idSalon'].">".$salones['DescSalon']."</option> ";
 				                        } 
 				                        ?>
 				                    </select>
