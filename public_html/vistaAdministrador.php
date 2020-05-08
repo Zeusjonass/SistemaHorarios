@@ -1,17 +1,30 @@
 <?php  
     session_start();
+
     $usuario= $_SESSION['username'];
+
     $rol=$_SESSION['rol'];
+
     if(!isset($usuario)){
+
         header("location:login.php");
+        
     }else{
-        require 'conectarBD.php';
+
+        require 'Dao.php';
+
         if($rol==1){
+            
+            $dao = new Dao();
+
+            $dataTable = $dao->listarDatos('vistaAdminTabla');
+
+            $dataClases = $dao->listarDatos('vistaAdminClases');
 ?>
 <html>
     <head>
         <title>Administrador</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css"> 
+        <link rel="stylesheet" type="text/css" href="css/vistaAdministrador.css"> 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="css/adminTable.css">
         <link rel="icon" href="img/uady.png" />
@@ -52,21 +65,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php 
-                        $tabla = "SELECT * from ((curso LEFT JOIN materia ON curso.idMateria = materia.idMateria) JOIN profesor ON curso.idProfesor = profesor.idProfesor) ORDER BY curso.idCurso ASC";
-			            $clases = "SELECT DISTINCT clase.idCurso, clase.idSalon, salon.descSalon from (clase JOIN salon ON clase.idSalon = salon.idSalon) ORDER BY clase.idCurso ASC";
-                        $res_tablas = $mysqli->query($tabla);
-                        $res_clases = $mysqli->query($clases);
-                        
-                        foreach ($res_tablas as $row){?> 
-                            <tr class='table-row' data-href = "<?php echo "horariosAdministrador.php?id=".$row['idCurso'] ?>">
-                                <td><?php echo $row['NomProf'] ?></td>
-                                <td><?php echo $row['NomMat'] ?></td>
+                        <?php                        
+                        foreach ($dataTable as $fila){?> 
+                            <tr class='table-row' data-href = "<?php echo "horariosAdministrador.php?id=".$fila['idCurso'] ?>">
+                                <td><?php echo $fila['NomProf'] ?></td>
+                                <td><?php echo $fila['NomMat'] ?></td>
                                 <td>
                                     <?php
-                                    foreach ($res_clases as $row2){   
-                                        if($row2['idCurso'] == $row['idCurso']){
-                                            echo "/".$row2['descSalon'];
+                                    foreach ($dataClases as $fila_2){   
+                                        if($fila['idCurso'] == $fila_2['idCurso']){
+                                            echo " ".$fila_2['descSalon'];
                                         }
                                     }
                                     ?>
@@ -81,7 +89,7 @@
                     <a href="registrarHorario.php"><button type="submit" class="btn btn-primary btn-md text-center">Registrar Nuevo Horario</button></a>
                 </div>
             </div>
-             <div class="row">
+            <div class="row">
                 <div class="col-12 text-center">
                     <?php
                     if (isset($_GET['error'])) {
@@ -99,6 +107,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src = "js/tablesort.js"></script>
         <script src = "js/clickable_row.js"></script>
+
     </body>
 </html>
     <?php }else{
