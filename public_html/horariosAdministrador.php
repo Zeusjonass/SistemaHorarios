@@ -36,9 +36,17 @@
 <html>
     <head>
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+
+        <link rel="stylesheet" type="text/css" href="css/horariosAdministrador.css">
+
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+
         <title>horarios</title>
+
         <link rel="icon" href="img/uady.png"/>
         <script>
             function validarOpcion(opcion){
@@ -55,50 +63,33 @@
                 }
             }
         </script>
-        <style type="text/css">
-            body{
-                background: url('img/UADY.jpg') no-repeat center center fixed;
-                -webkit-background-size: cover;
-                -moz-background-size: cover;
-                background-size: cover;
-                -o-background-size: cover;
-                backdrop-filter: blur(10px);
-            }
-            .table{
-                background-color: rgba(0,0,0,.8);
-                border-radius: 15px;
-                color: white;
-            }
-            .table tr:hover{
-                cursor: pointer;
-                background-color: rgba(0,0,0,.9);
-            }
-        </style>
-        
     </head>   
     <body>
         <div class="container-fluid ">
         	<div class="row">
-        		<div class="col-12 text-center">
-                    <br>
-                    <a href="vistaAdministrador.php">
-                    <button type="button" class="btn btn-dark btn-sm mb-2 float-left">Regresar</button>
-                    </a>
-        			<h4 class="titulo d-inline">Información del grupo <?php echo $cursoObtenido;?></h4>
+        		<div class="col-12 header text-center mt-2">
+        			<h4>Grupo <?php echo $cursoObtenido;?></h4>
         		</div>
+
+                <div class="col-12">
+                     <a href="vistaAdministrador.php">
+                        <button type="button" class="btn btn-dark btn-sm float-left">Regresar</button>
+                    </a>
+                </div>
         	</div>
+
         	<div class="row justify-content-center">
         		<div class="col-6 text-center">
-        			<p>Profesor: <?php if ( isset( $idObtenido ) ){ echo $idObtenido['NomProf'];}?></p>
-        			<p>Materia: <?php if ( isset( $idObtenido ) ){ echo $idObtenido['DescMat'];}?></p>
+        			<p>Profesor : <?php if ( isset( $idObtenido ) ){ echo $idObtenido['NomProf'];}?></p>
+        			<p>Materia : <?php if ( isset( $idObtenido ) ){ echo $idObtenido['DescMat'];}?></p>
         		</div>
         	</div>
             <div class="row justify-content-center">
                 <div class="col-12 text-center table-responsive">
                     <form action="" method="POST" id="form">
-                    <table class="table table-dark table-hover table-borderless">
+                    <table class="table">
                         <tr>
-                            <th scope="col">Lunes</th>
+                            <th scope="col"><p>Lunes</p></th>
                             <?php while( $mostrar = mysqli_fetch_assoc( $dataLunes ) ){ 
                                 if( $mostrar['Dia'] == 'Lunes' ){
                                     echo "<td scope='col'>";
@@ -112,7 +103,7 @@
                             }?>
                         </tr>
                         <tr>
-                            <th scope="col">Martes</th>
+                            <th scope="col"><p>Martes</p></th>
                             <?php while( $mostrar2 = mysqli_fetch_assoc( $dataMartes ) ){ 
                                 if( $mostrar2['Dia'] == 'Martes' ){
                                 	echo "<td scope='col'>";
@@ -125,7 +116,7 @@
                             }?>
                         </tr>
                         <tr>
-                            <th scope="col">Miércoles</th>
+                            <th scope="col"><p>Miércoles</p></th>
                             <?php while( $mostrar3 = mysqli_fetch_assoc( $dataMiercoles ) ){ 
                                 if( $mostrar3['Dia'] == 'Miercoles' ){
                                 	echo "<td scope='col'>";
@@ -138,7 +129,7 @@
                             }?>
                         </tr>
                         <tr>
-                            <th scope="col">Jueves</th>
+                            <th scope="col"><p>Jueves</p></th>
                             <?php while( $mostrar4 = mysqli_fetch_assoc( $dataJueves ) ){ 
                                 if( $mostrar4['Dia'] == 'Jueves' ){
                             		echo "<td scope='col'>";
@@ -151,7 +142,7 @@
                             }?>
                         </tr>
                         <tr>
-                            <th scope="col">Viernes</th>
+                            <th scope="col"><p>Viernes</p></th>
                             <?php while( $mostrar5 = mysqli_fetch_assoc( $dataViernes ) ){ 
                                 if( $mostrar5['Dia'] == 'Viernes' ){
                                 	echo "<td scope='col'>";

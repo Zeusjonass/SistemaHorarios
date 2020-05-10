@@ -26,30 +26,33 @@
             $datosJueves=$dao->listarDatos('vistaProfesor');
             
             $datosViernes=$dao->listarDatos('vistaProfesor');
+
+            $nombre = $dao->obtenerDato("NomProf","profesor","idUsuario",$usuario);
     ?>
 <html>
     <head>
-        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/">
+        <link rel="stylesheet" type="text/css" href="css/vistaProfesor.css">
+
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
         <title>Profesor</title>
         <link rel="icon" href="img/uady.png" />
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     </head>   
     <body>
         <div class="container-fluid">
             <div class="row justify-content-center">
-                <div class="col-12 text-center">
-                    <br>
-                    <h4 class="d-inline ">Bienvenido profesor <?php echo "$nomProf"; ?></h4>
+                <div class="col-12 text-center header mb-5 mt-3">
+                    <h4 class="">Bienvenido profesor <?php echo "$nombre"; ?></h4>
                     <a href="cerrarSesion.php">
-                    <button type="button" class="btn btn-dark btn-sm mb-2 float-right">Cerrar Sesión</button>
+                    <button type="button" class="btn btn-dark btn-sm  float-right">Cerrar Sesión</button>
                     </a>
-                    <br><br><br>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-12 table-responsive">
-                    <table class="table table-dark table-hover table-borderless">
+                    <table class="table">
                         <tr>
                             <th scope="col">Lunes</th>
                             <?php while($row=mysqli_fetch_assoc($datosLunes)){ 

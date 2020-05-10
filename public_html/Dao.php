@@ -317,6 +317,7 @@
 			endif;
 
 		}
+
 		public function editarClase( $clase ){
 
 			function horarioDisponible($horaInicioOld,$horaFinOld,$horaInicioNew,$horaFinNew){
@@ -414,6 +415,33 @@
 
             $conexion->cerrarConexion();
 
+		}
+
+		public function obtenerDato($dato,$tabla,$condicion,$datoCondicional){
+
+			$conexion = new Conexion();
+
+			if(empty($condicion) || empty($datoCondicional)):
+
+				$query = "SELECT $dato from $tabla";
+			else:
+			
+				$query = "SELECT $dato from $tabla where $condicion='$datoCondicional'";
+			endif;
+
+			$consulta = $conexion->ejecutarConsulta($query);
+
+			if($consulta):
+
+				$nombreAux = mysqli_fetch_array($consulta);
+
+				$datoObtenido = $nombreAux[0];
+
+			endif;
+
+			$conexion->cerrarConexion();
+			
+			return $datoObtenido;
 		}
 	}
 ?>
