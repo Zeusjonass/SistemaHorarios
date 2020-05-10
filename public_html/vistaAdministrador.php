@@ -23,11 +23,14 @@
 ?>
 <html>
     <head>
-        <title>Administrador</title>
-        <link rel="stylesheet" type="text/css" href="css/vistaAdministrador.css"> 
+
+        <link rel="stylesheet" type="text/css" href="css/vistaAdmin.css"> 
+        <link rel="stylesheet" type="text/css" href="css/adminTable.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/adminTable.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
         <link rel="icon" href="img/uady.png" />
+        <title>Administrador</title>
         <script>
             function errorMessage(num){
                 if(num==1){
@@ -48,11 +51,10 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 text-center">
-                    <br>
-                    <h4 class="d-inline">Bienvenido administrador</h4>
+                <div class="col-12 mt-3 mb-3 header text-center">
+                    <h4>Bienvenido administrador</h4>
                     <a href="cerrarSesion.php">
-                    <button type="button" class="btn btn-primary btn-sm mb-2 float-right" id="out_sesion">Cerrar Sesión</button></a><br><br><br>
+                    <button type="button" class="btn btn-primary btn-sm float-right" id="out_sesion">Cerrar Sesión</button></a>
                 </div>
             </div>
             <div class="row">

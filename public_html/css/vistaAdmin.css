@@ -1,37 +1,32 @@
-    *{
-        margin: 0;
-        padding: 0;
-        font-family: 'Roboto', sans-serif;
-        font-weight: 100;
-    }
+	*{
+		margin: 0;
+		padding: 0;
+	    font-family: 'Roboto', sans-serif;
+	    font-weight: 100;
+	}
 
-    body{
-        background: url('../img/2.jpg') no-repeat center center fixed;
+	body{
+		background: url('../img/UADY.jpg') no-repeat center center fixed;
         background-size: cover;
-        backdrop-filter: blur(2px);
-    }
+        backdrop-filter: blur(10px);
+	}
 
-    header{
-        color: white;
-    }
-
-    header h4{
-        text-shadow: #474747 3px 5px 2px;
+	.header h4{
+		color: white;
+		font-weight: 600;
+		text-shadow: #474747 3px 5px 2px;
         border-radius: 10px;
         box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.61);
         padding: 5px;
-    }
-    .table{
-
+	}
+	.table{
+		color: white!important; 
+		margin:0 auto;
+		width: 90%!important;
         box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.80);
         background-color: rgba(0,0,0,.8);
         border-radius: 15px;
         text-align: justify;
-    }
-
-    .table tr{
-
-        color: white;
     }
 
     .table tr:hover{
@@ -46,12 +41,8 @@
         border:0;
 
     }
-    .table tr th p{
-        
-        margin: 0;
-    }
 
     .table tr td{
 
-        border:0;
+        border:10;
     }

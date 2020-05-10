@@ -1,29 +1,22 @@
     *{
-        margin: 0;
         padding: 0;
+        margin: 0;
         font-family: 'Roboto', sans-serif;
         font-weight: 100;
     }
 
     body{
-        background: url('../img/2.jpg') no-repeat center center fixed;
+
+        background: url('../img/UADY.jpg') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
         background-size: cover;
-        backdrop-filter: blur(2px);
+        -o-background-size: cover;
+        backdrop-filter: blur(10px);
     }
 
-    header{
-        color: white;
-    }
-
-    header h4{
-        text-shadow: #474747 3px 5px 2px;
-        border-radius: 10px;
-        box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.61);
-        padding: 5px;
-    }
     .table{
 
-        box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.80);
         background-color: rgba(0,0,0,.8);
         border-radius: 15px;
         text-align: justify;
@@ -54,4 +47,21 @@
     .table tr td{
 
         border:0;
+    }
+
+    .table tr td label{
+
+        padding: 10px;
+    }
+
+    .table tr td label:hover{
+        
+        cursor: pointer;
+    }
+
+    .header h4{
+        
+        font-size: 32px;
+        font-weight: 600;
+
     }
