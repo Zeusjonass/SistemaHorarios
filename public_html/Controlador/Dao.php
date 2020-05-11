@@ -1,5 +1,5 @@
 <?php 
-	require 'conectarBD.php';
+	require '../Modelos/conectarBD.php';
 
 	class Dao
 	{
@@ -184,13 +184,13 @@
 
             if( $strHoraFin <= $strHoraInicio ):
 
-                header("location:registrarHorario.php?error=2");
+                header("location:../Vista/registrarHorario.php?error=2");
 
             #validacion de que la diferencia de horas, no supere las 2 horas
 
             elseif( ( $strHoraFin-$strHoraInicio ) > $SEGUNDOS2HORAS):
 
-                header("location:registrarHorario.php?error=1");
+                header("location:../Vista/registrarHorario.php?error=1");
 
             else:
                 
@@ -221,17 +221,17 @@
 
                     	$data = $conexion->ejecutarActualizacion( $insertQuery );
 
-                        header("location:registrarHorario.php?error=5");
+                        header("location:../Vista/registrarHorario.php?error=5");
 
                     else:
 
-                        header("location:registrarHorario.php?error=4");
+                        header("location:../Vista/registrarHorario.php?error=4");
 
                     endif;
 
                 else:
 
-                    header("location:registrarHorario.php?error=3");
+                    header("location:../Vista/registrarHorario.php?error=3");
 
                 endif;
 
@@ -274,20 +274,20 @@
 
 				if($rol==1){
 
-					header("location: vistaAdministrador.php");
+					header("location: ../Vista/vistaAdministrador.php");
 
 				}elseif ($rol==2) {
 
-					header("location: vistaProfesor.php");
+					header("location: ../Vista/vistaProfesor.php");
 
 				}else{
 
-					header("location: vistaEstudiante.php");
+					header("location: ../Vista/vistaEstudiante.php");
 
 				}
 			}else {
 
-			    header("location: login.php?error=1");
+			    header("location: ../Vista/login.php?error=1");
 
 			}
 		}
@@ -308,7 +308,7 @@
 
 			if($data):
 
-				header("location:vistaAdministrador.php");
+				header("location:../Vista/vistaAdministrador.php");
 
 			else:
 
@@ -362,12 +362,12 @@
             #validacion de que la hora final vaya despues de la hora inicio
             if( $strHoraFin <= $strHoraInicio ):
 
-                header("location:vistaAdministrador.php?error=2");
+                header("location:../Vista/vistaAdministrador.php?error=2");
 
             #validacion de que la diferencia de horas, no supere las 2 horas
             elseif( ($strHoraFin-$strHoraInicio) > $SEGUNDOS2HORAS ):
 
-                header("location:vistaAdministrador.php?error=1");
+                header("location:../Vista/vistaAdministrador.php?error=1");
 
             else:
                 
@@ -398,16 +398,16 @@
 
                     	$data = $conexion->ejecutarActualizacion( $updateQuery );
 
-                        header("location:vistaAdministrador.php?error=5");
+                        header("location:../Vista/vistaAdministrador.php?error=5");
 
                     else:
 
-                        header("location:vistaAdministrador.php?error=4");
+                        header("location:../Vista/vistaAdministrador.php?error=4");
 
                     endif;
                 else:
 
-                    header("location:vistaAdministrador.php?error=3");
+                    header("location:../Vista/vistaAdministrador.php?error=3");
 
                 endif;
 

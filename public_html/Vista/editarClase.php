@@ -10,9 +10,9 @@ else:
 
 	if($rol==1):
 
-		require 'Dao.php';
+		require '../Controlador/Dao.php';
 
-		require'Modelos/clase.php';
+		require'../Modelos/clase.php';
 
 		if(isset($_POST['claseElegida'])):
 
@@ -34,9 +34,9 @@ else:
 		<html>
 		<head>
 			<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-	        <link rel="stylesheet" type="text/css" href="css/style.css">
+	        <link rel="stylesheet" type="text/css" href="../css/style.css">
 	        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	        <link rel="icon" href="img/uady.png"/>
+	        <link rel="icon" href="../img/uady.png"/>
 	        <title>Editar clase</title>
 	        <style type="text/css">
 	        	*{
@@ -44,7 +44,7 @@ else:
 	        		padding: 0;
 	        	}
 	        	body{
-	                background: url('img/schedule.jpg') no-repeat center center fixed;
+	                background: url('../img/schedule.jpg') no-repeat center center fixed;
 	                -webkit-background-size: cover;
 	                -moz-background-size: cover;
 	                background-size: cover;
@@ -76,7 +76,7 @@ else:
 		                <div class="formulario">
 		                	<br>
 		                	<h2>Editar horario</h2><br>
-		                    <form action="controlador.php?action=editar" method="POST">
+		                    <form action="../Controlador/controlador.php?action=editar" method="POST">
 								<label><p>Hora inicio:</p>
 									<input type="time" name="horaInicio" min="07:00"  max="21:00" required="true" step="1800" value="<?php echo $claseAEditar->getHoraInicio() ?>">
 								</label><br>
@@ -114,7 +114,7 @@ else:
 			echo "No se eligio ninguna clase";
 		endif;
 	else:
-		header("location:cerrarSesion.php");
+		header("location:../Modelos/cerrarSesion.php");
 	endif;
 endif;	
 ?>
