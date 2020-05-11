@@ -5,7 +5,7 @@
     if(!isset($usuario)){
         header("location:login.php");
     }else{
-        require 'Dao.php';
+        require '../Controlador/Dao.php';
 
         if ($rol==1) {
 
@@ -18,13 +18,13 @@
 <html> 
     <head>
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/registrarHorario.css">
+        <link rel="stylesheet" type="text/css" href="../css/registrarHorario.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
         
         <title>Registrar horario</title>
-        <link rel="icon" href="img/uady.png" />
+        <link rel="icon" href="../img/uady.png" />
         <script>
             function errorMessage(num){
                 if( num==1 ){
@@ -56,7 +56,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                <form action="controlador.php?action=registrar" method="POST">
+                <form action="../Controlador/controlador.php?action=registrar" method="POST">
                 <table class="table">
                     <tr style="text-align: center;">
                         <th>Grupos Existentes</th>
@@ -126,6 +126,6 @@
 </html>
 <?php 
     }else{ 
-        header("location:cerrarSesion.php"); 
+        header("location:../Modelos/cerrarSesion.php"); 
     }
 }?>

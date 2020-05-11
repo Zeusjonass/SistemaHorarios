@@ -4,8 +4,7 @@
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <title>Sistema de horarios</title>
-        <link rel="icon" href="img/uady.png" />
-        <link rel="stylesheet" href="">
+        <link rel="icon" href="../img/uady.png" />
         <script>
             function errorMessage(){
                 alert("El nombre y contraseña no coinciden");
@@ -13,7 +12,7 @@
         </script>
         <style>
             body {
-                background: url('img/UADY.jpg') no-repeat center center fixed;
+                background: url('../img/UADY.jpg') no-repeat center center fixed;
                 -webkit-background-size: cover;
                 -moz-background-size: cover;
                 background-size: cover;
@@ -48,9 +47,9 @@
                 <div class="col-4 text-center my-auto">
                 <div class="formulario">
                     <div class="user-img">
-                        <a href="login.php"><img src="img/uady.png"></a>
+                        <a href="login.php"><img src="../img/uady.png"></a>
                     </div>
-                    <form action="controlador.php?action=login" method="POST">
+                    <form action="../Controlador/controlador.php?action=login" method="POST">
 
                         <div class="form-group" id="user-group">
                             <input class="form-control-md" type="text" placeholder="Usuario" id="usuario" name="usuario" required>

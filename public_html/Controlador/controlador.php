@@ -1,7 +1,7 @@
 <?php
 	require 'Dao.php';
-	require 'Modelos/Usuario.php';
-	require 'Modelos/clase.php';  
+	require '../Modelos/Usuario.php';
+	require '../Modelos/clase.php';  
 	session_start();
 	switch ($_GET['action']) {
 

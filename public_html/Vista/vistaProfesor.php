@@ -11,7 +11,7 @@
 
     }else{
         
-        require 'Dao.php';
+        require '../Controlador/Dao.php';
         
         if($rol==2){
 
@@ -31,13 +31,13 @@
     ?>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="css/vistaProfesor.css">
+        <link rel="stylesheet" type="text/css" href="../css/vistaProfesor.css">
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
         <title>Profesor</title>
-        <link rel="icon" href="img/uady.png" />
+        <link rel="icon" href="../img/uady.png" />
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     </head>   
     <body>
@@ -45,7 +45,7 @@
             <div class="row justify-content-center">
                 <div class="col-12 text-center header mb-5 mt-3">
                     <h4 class="">Bienvenido profesor <?php echo "$nombre"; ?></h4>
-                    <a href="cerrarSesion.php">
+                    <a href="../Modelos/cerrarSesion.php">
                     <button type="button" class="btn btn-dark btn-sm  float-right">Cerrar Sesión</button>
                     </a>
                 </div>
@@ -100,7 +100,7 @@
     </body>
 </html>
     <?php }else{
-        header("location:cerrarSesion.php");
+        header("location:../Modelos/cerrarSesion.php");
     } }?>
 
         

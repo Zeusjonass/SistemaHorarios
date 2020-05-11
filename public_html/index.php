@@ -1,3 +1,3 @@
 <?php  
-	require 'login.php';
+	header('location:Vista/login.php');
 ?>

@@ -9,7 +9,7 @@
 
     }else{
 
-        require 'Dao.php';
+        require '../Controlador/Dao.php';
 
         if($rol==1){
 
@@ -37,7 +37,7 @@
     <head>
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
-        <link rel="stylesheet" type="text/css" href="css/horariosAdministrador.css">
+        <link rel="stylesheet" type="text/css" href="../css/horariosAdministrador.css">
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         
@@ -47,7 +47,7 @@
 
         <title>horarios</title>
 
-        <link rel="icon" href="img/uady.png"/>
+        <link rel="icon" href="../img/uady.png"/>
         <script>
             function validarOpcion(opcion){
 
@@ -55,7 +55,7 @@
 
                 if(opcion=='borrar'){
 
-                    form.action='controlador.php?action=borrar';
+                    form.action='../Controlador/controlador.php?action=borrar';
                 }
                 else{
 
