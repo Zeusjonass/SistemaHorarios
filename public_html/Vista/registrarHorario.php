@@ -2,7 +2,7 @@
     session_start();
     $usuario= $_SESSION['username'];
     $rol=$_SESSION['rol'];
-    if(!isset($usuario)){
+    if (!isset($usuario)) {
         header("location:login.php");
     }else{
         require '../Controlador/Dao.php';
@@ -27,19 +27,19 @@
         <link rel="icon" href="../img/uady.png" />
         <script>
             function errorMessage(num){
-                if( num==1 ){
+                if (num==1) {
                     
                     alert("Las clases deben durar 2 horas o menos");
-                }else if( num==2 ){
+                }else if (num==2) {
 
                     alert("La hora final debe ir despues de la hora de inicio");
-                }else if( num==3 ){
+                }else if (num==3) {
 
                     alert("No pueden haber 2 clases del mismo grupo el mismo día");
-                }else if( num==4 ){
+                }else if (num==4) {
 
                     alert("Otro grupo tiene el horario deseado");
-                }else if( num==5 ){
+                }else if (num==5) {
 
                     alert("Se agregó el horario de manera correcta");
                 }
@@ -67,7 +67,8 @@
                     echo "<td scope='col' style='text-align:center;'>";
                     echo "<label>";
                     echo "<input type='radio' value=".$mostrar['idCurso']." name='cursos' required><br>";
-                    echo "<div>Id curso: ".$mostrar['idCurso']."<br>Profesor: ".$mostrar['NomProf']."<br>Materia: ".$mostrar['NomMat']."</div>";
+                    echo "<div>Id curso: ".$mostrar['idCurso']."<br>Profesor: ".$mostrar['NomProf']."<br>Materia:
+                    ".$mostrar['NomMat']."</div>";
                     echo "</label>"; 
                     echo "</td>";
                     echo "</tr>";
@@ -76,10 +77,16 @@
                 </table>
                 <div class="formulario">
                     <div>
-                        <label>Hora inicio: <input type="time" name="horaInicio" min="07:00"  max="21:00" required="true" step="1800"></label>
+                        <label>
+                            Hora inicio: 
+                            <input type="time" name="horaInicio" min="07:00"  max="21:00" required="true" step="1800">
+                        </label>
                     </div>
                     <div>
-                        <label>Hora Fin: <input type="time" name="horaFin" required="true" min="07:00"  max="21:00" step="1800"></label>
+                        <label>
+                            Hora Fin: 
+                            <input type="time" name="horaFin" required="true" min="07:00"  max="21:00" step="1800">
+                        </label>
                     </div>
                     <div>
                     <label>Día: 
