@@ -55,43 +55,52 @@
                     <table class="table">
                         <tr>
                             <th scope="col">Lunes</th>
-                            <?php while($row=mysqli_fetch_assoc($datosLunes)){ 
-                                if($row['Dia']=='Lunes'){
-                                    echo "<td scope='col'>Materia: ".$row['DescMat']."<br>Profesor: ".$row['NomProf']."<br>Hora Inicio: ".$row['HoraInicio']."<br>Hora final: ".$row['HoraFin']."<br>Salon: ".$row['DescSalon']."</td>";
+                            <?php 
+                                while ($rowHorarios=mysqli_fetch_assoc($datosLunes)) {
+                                if ($rowHorarios['Dia']=='Lunes') {
+                                    echo "<td scope='col'>Materia: ".$rowHorarios['DescMat']."<br>Profesor: ".$rowHorarios['NomProf']."<br>Hora Inicio: ".$rowHorarios['HoraInicio']."<br>Hora final: ".$rowHorarios['HoraFin']."<br>Salon: ".$rowHorarios['DescSalon']."</td>";
                                 };
-                            }?>
+                            }
+                            ?>
                         </tr>
                         <tr>
                             <th scope="col">Martes</th>
-                            <?php while($row=mysqli_fetch_assoc($datosMartes)){ 
-                                if($row['Dia']=='Martes'){
-                                    echo "<td scope='col'>Materia: ".$row['DescMat']."<br>Profesor: ".$row['NomProf']."<br>Hora Inicio: ".$row['HoraInicio']."<br>Hora final: ".$row['HoraFin']."<br>Salon: ".$row['DescSalon']."</td>";
+                            <?php 
+                                while ($rowHorarios=mysqli_fetch_assoc($datosMartes)) {
+                                if ($rowHorarios['Dia']=='Martes') {
+                                    echo "<td scope='col'>Materia: ".$rowHorarios['DescMat']."<br>Profesor: ".$rowHorarios['NomProf']."<br>Hora Inicio: ".$rowHorarios['HoraInicio']."<br>Hora final: ".$rowHorarios['HoraFin']."<br>Salon: ".$rowHorarios['DescSalon']."</td>";
                                 };
-                            }?>
+                            }
+                            ?>
                         </tr>
                         <tr>
                             <th scope="col">Miércoles</th>
-                            <?php while($row=mysqli_fetch_assoc($datosMiercoles)){ 
-                                if($row['Dia']=='Miercoles'){
-                                    echo "<td scope='col'>Materia: ".$row['DescMat']."<br>Profesor: ".$row['NomProf']."<br>Hora Inicio: ".$row['HoraInicio']."<br>Hora final: ".$row['HoraFin']."<br>Salon: ".$row['DescSalon']."</td>";
+                            <?php while ($rowHorarios=mysqli_fetch_assoc($datosMiercoles)) {
+                                if ($rowHorarios['Dia']=='Miercoles') {
+                                    echo "<td scope='col'>Materia: ".$rowHorarios['DescMat']."<br>Profesor: ".$rowHorarios['NomProf']."<br>Hora Inicio: ".$rowHorarios['HoraInicio']."<br>Hora final: ".$rowHorarios['HoraFin']."<br>Salon: ".$rowHorarios['DescSalon']."</td>";
                                 };
-                            }?>
+                            }
+                            ?>
                         </tr>
                         <tr>
                             <th scope="col">Jueves</th>
-                            <?php while($row=mysqli_fetch_assoc($datosJueves)){ 
-                                if($row['Dia']=='Jueves'){
-                                    echo "<td scope='col'>Materia: ".$row['DescMat']."<br>Profesor: ".$row['NomProf']."<br>Hora Inicio: ".$row['HoraInicio']."<br>Hora final: ".$row['HoraFin']."<br>Salon: ".$row['DescSalon']."</td>";
+                            <?php 
+                                while ($rowHorarios=mysqli_fetch_assoc($datosJueves)) {
+                                if ($rowHorarios['Dia']=='Jueves') {
+                                    echo "<td scope='col'>Materia: ".$rowHorarios['DescMat']."<br>Profesor: ".$rowHorarios['NomProf']."<br>Hora Inicio: ".$rowHorarios['HoraInicio']."<br>Hora final: ".$rowHorarios['HoraFin']."<br>Salon: ".$rowHorarios['DescSalon']."</td>";
                                 };
-                            }?>
+                            }
+                            ?>
                         </tr>
                         <tr>
                             <th scope="col">Viernes</th>
-                            <?php while($row=mysqli_fetch_assoc($datosViernes)){ 
-                                if($row['Dia']=='Viernes'){
-                                    echo "<td scope='col'>Materia: ".$row['DescMat']."<br>Profesor: ".$row['NomProf']."<br>Hora Inicio: ".$row['HoraInicio']."<br>Hora final: ".$row['HoraFin']."<br>Salon: ".$row['DescSalon']."</td>";
+                            <?php 
+                                while ($rowHorarios=mysqli_fetch_assoc($datosViernes)) {
+                                if ($rowHorarios['Dia']=='Viernes') {
+                                    echo "<td scope='col'>Materia: ".$rowHorarios['DescMat']."<br>Profesor: ".$rowHorarios['NomProf']."<br>Hora Inicio: ".$rowHorarios['HoraInicio']."<br>Hora final: ".$rowHorarios['HoraFin']."<br>Salon: ".$rowHorarios['DescSalon']."</td>";
                                 };
-                            }?>
+                            }
+                            ?>
                         </tr>
                     </table>
                 </div>
@@ -99,8 +108,6 @@
         </div>
     </body>
 </html>
-    <?php }else{
+    <?php } else {
         header("location:../Modelos/cerrarSesion.php");
     } }?>
-
-        
